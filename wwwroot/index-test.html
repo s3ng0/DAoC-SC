@@ -1,0 +1,616 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SC Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style-test.css">
+
+</head>
+<body>
+    <div class="orb"></div>
+    <div id="main-content">
+        <div id="home" class="page-content active">
+            <h1>Welcome to Eden's SC Calculator</h1>
+        </div>
+        <div id="tool" class="page-content">
+            <div class="container">
+                <div class="window-character">
+                    <div class="window-title">Character</div>
+                    <div class="window-content">
+                        <form id="character-form">
+                            <div class="form-left">
+                                <div>
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" placeholder="Enter character name" required>
+                                </div>
+                                <div>
+                                    <label for="realm">Realm</label>
+                                    <span class="icon">
+                                        <img src="img/icon-realm.png" alt="Realm Icon" />
+                                    </span>
+                                    <select id="realm" name="realm" required>
+                                        <option value="Albion">Albion</option>
+                                        <option value="Hibernia">Hibernia</option>
+                                        <option value="Midgard">Midgard</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="race">Race</label>
+                                    <span class="icon">
+                                        <img src="img/icon-race.png" alt="Race Icon" />
+                                    </span>
+                                    <select id="race" name="race" required>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="classes">Class</label>
+                                    <span class="icon">
+                                        <img src="img/icon-class.png" alt="Class Icon" />
+                                    </span>
+                                    <select id="class" name="classes" required>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-right">
+                                <div>
+                                    <label for="level">Lvl</label>
+                                    <select id="level" name="level" required>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="rank">Rank</label>
+                                    <select id="rank" name="rank" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="window-summary-stats">
+                    <div class="window-title">Summary : Stats </div>
+                    <div class="window-content">
+                        <div class="summary-row">
+                            <label id="str" for="strength">STR</label>
+                            <div class="progress-container">
+                                <progress id="progress-strength" value="0" max="1"></progress>
+                                <span id="current-value-strength" class="progress-value">0</span>
+                                <span id="difference-value-strength" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-str">0</span>
+
+                            <label id="con" for="constitution">CON</label>
+                            <div class="progress-container">
+                                <progress id="progress-constitution" value="0" max="1"></progress>
+                                <span id="current-value-constitution" class="progress-value">0</span>
+                                <span id="difference-value-constitution" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-con">0</span>
+
+                            <label id="dex" for="dexterity">DEX</label>
+                            <div class="progress-container">
+                                <progress id="progress-dexterity" value="0" max="1"></progress>
+                                <span id="current-value-dexterity" class="progress-value">0</span>
+                                <span id="difference-value-dexterity" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-dex">0</span>
+
+                            <label id="qui" for="quickness">QUI</label>
+                            <div class="progress-container">
+                                <progress id="progress-quickness" value="0" max="1"></progress>
+                                <span id="current-value-quickness" class="progress-value">0</span>
+                                <span id="difference-value-quickness" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-qui">0</span>
+
+                            <label id="int" for="intelligence">INT</label>
+                            <div class="progress-container">
+                                <progress id="progress-intelligence" value="0" max="1"></progress>
+                                <span id="current-value-intelligence" class="progress-value">0</span>
+                                <span id="difference-value-intelligence" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-int">0</span>
+
+                            <label id="pie" for="piety">PIE</label>
+                            <div class="progress-container">
+                                <progress id="progress-piety" value="0" max="1"></progress>
+                                <span id="current-value-piety" class="progress-value">0</span>
+                                <span id="difference-value-piety" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-pie">0</span>
+
+                            <label id="emp" for="empathy">EMP</label>
+                            <div class="progress-container">
+                                <progress id="progress-empathy" value="0" max="1"></progress>
+                                <span id="current-value-empathy" class="progress-value">0</span>
+                                <span id="difference-value-empathy" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-emp">0</span>
+
+                            <label id="cha" for="charisma">CHA</label>
+                            <div class="progress-container">
+                                <progress id="progress-charisma" value="0" max="1"></progress>
+                                <span id="current-value-charisma" class="progress-value">0</span>
+                                <span id="difference-value-charisma" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-cha">0</span>
+
+                            <label id="pow" for="power">POW</label>
+                            <div class="progress-container">
+                                <progress id="progress-power" value="0" max="1"></progress>
+                                <span id="current-value-power" class="progress-value">0</span>
+                                <span id="difference-value-power" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-pow">0</span>
+
+                            <label id="hp" for="hit points">HP</label>
+                            <div class="progress-container">
+                                <progress id="progress-hp" value="0" max="1"></progress>
+                                <span id="current-value-hp" class="progress-value">0</span>
+                                <span id="difference-value-hp" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-hp">0</span>
+
+                            <label id="af" for="armor factor">AF</label>
+                            <div class="progress-container">
+                                <progress id="progress-af" value="0" max="1"></progress>
+                                <span id="current-value-af" class="progress-value">0</span>
+                                <span id="difference-value-af" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-af">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="window-summary-resists">
+                    <div class="window-title">Summary : Resists </div>
+                    <div class="window-content">
+                        <div class="summary-row">
+                            <label id="body" for="body">Body</label>
+                            <div class="progress-container">
+                                <progress id="progress-body" value="0" max="1"></progress>
+                                <span id="current-value-body" class="progress-value">0</span>
+                                <span id="difference-value-body" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-body">0</span>
+
+                            <label id="cold" for="cold">Cold</label>
+                            <div class="progress-container">
+                                <progress id="progress-cold" value="0" max="1"></progress>
+                                <span id="current-value-cold" class="progress-value">0</span>
+                                <span id="difference-value-cold" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-cold">0</span>
+
+                            <label id="heat" for="heat">Heat</label>
+                            <div class="progress-container">
+                                <progress id="progress-heat" value="0" max="1"></progress>
+                                <span id="current-value-heat" class="progress-value">0</span>
+                                <span id="difference-value-heat" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-heat">0</span>
+
+                            <label id="energy" for="energy">Energy</label>
+                            <div class="progress-container">
+                                <progress id="progress-energy" value="0" max="1"></progress>
+                                <span id="current-value-energy" class="progress-value">0</span>
+                                <span id="difference-value-energy" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-energy">0</span>
+
+                            <label id="matter" for="matter">Matter</label>
+                            <div class="progress-container">
+                                <progress id="progress-matter" value="0" max="1"></progress>
+                                <span id="current-value-matter" class="progress-value">0</span>
+                                <span id="difference-value-matter" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-matter">0</span>
+
+                            <label id="spirit" for="spirit">Spirit</label>
+                            <div class="progress-container">
+                                <progress id="progress-spirit" value="0" max="1"></progress>
+                                <span id="current-value-spirit" class="progress-value">0</span>
+                                <span id="difference-value-spirit" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-spirit">0</span>
+
+                            <label id="crush" for="crush">Crush</label>
+                            <div class="progress-container">
+                                <progress id="progress-crush" value="0" max="1"></progress>
+                                <span id="current-value-crush" class="progress-value">0</span>
+                                <span id="difference-value-crush" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-crush">0</span>
+
+                            <label id="slash" for="slash">Slash</label>
+                            <div class="progress-container">
+                                <progress id="progress-slash" value="0" max="1"></progress>
+                                <span id="current-value-slash" class="progress-value">0</span>
+                                <span id="difference-value-slash" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-slash">0</span>
+
+                            <label id="thrust" for="thrust">Thrust</label>
+                            <div class="progress-container">
+                                <progress id="progress-thrust" value="0" max="1"></progress>
+                                <span id="current-value-thrust" class="progress-value">0</span>
+                                <span id="difference-value-thrust" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-thrust">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="window-summary-toabonuses">
+                    <div class="window-title">Summary : Toa Bonuses </div>
+                    <div class="window-content">
+                        <div class="summary-row">
+                            <label id="power-pool" for="power-pool">Power P.</label>
+                            <div class="progress-container">
+                                <progress id="progress-power-pool" value="0" max="1"></progress>
+                                <span id="current-value-power-pool" class="progress-value">0</span>
+                                <span id="difference-value-power-pool" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-power-pool">0</span>
+
+                            <label id="debuff-effectiveness" for="debuff-effectiveness">Debuff</label>
+                            <div class="progress-container">
+                                <progress id="progress-debuff-effectiveness" value="0" max="1"></progress>
+                                <span id="current-value-debuff-effectiveness" class="progress-value">0</span>
+                                <span id="difference-value-debuff-effectiveness" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-debuff-effectiveness">0</span>
+
+                            <label id="buff-effectiveness" for="buff-effectiveness">Buff</label>
+                            <div class="progress-container">
+                                <progress id="progress-buff-effectiveness" value="0" max="1"></progress>
+                                <span id="current-value-buff-effectiveness" class="progress-value">0</span>
+                                <span id="difference-value-buff-effectiveness" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-buff-effectiveness">0</span>
+
+                            <label id="healing-effectiveness" for="healing-effectiveness">Healing</label>
+                            <div class="progress-container">
+                                <progress id="progress-healing-effectiveness" value="0" max="1"></progress>
+                                <span id="current-value-healing-effectiveness" class="progress-value">0</span>
+                                <span id="difference-value-healing-effectiveness" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-healing-effectiveness">0</span>
+
+                            <label id="spell-duration" for="spell-duration">Spell Dura</label>
+                            <div class="progress-container">
+                                <progress id="progress-spell-duration" value="0" max="1"></progress>
+                                <span id="current-value-spell-duration" class="progress-value">0</span>
+                                <span id="difference-value-spell-duration" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-spell-duration">0</span>
+
+                            <label id="casting-speed" for="casting-speed">Casting</label>
+                            <div class="progress-container">
+                                <progress id="progress-casting-speed" value="0" max="1"></progress>
+                                <span id="current-value-casting-speed" class="progress-value">0</span>
+                                <span id="difference-value-casting-speed" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-casting-speed">0</span>
+
+                            <label id="spell-range" for="spell-range">Range</label>
+                            <div class="progress-container">
+                                <progress id="progress-spell-range" value="0" max="1"></progress>
+                                <span id="current-value-spell-range" class="progress-value">0</span>
+                                <span id="difference-value-spell-range" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-spell-range">0</span>
+
+                            <label id="spell-damage" for="spell-damage">Spell Dmg</label>
+                            <div class="progress-container">
+                                <progress id="progress-spell-damage" value="0" max="1"></progress>
+                                <span id="current-value-spell-damage" class="progress-value">0</span>
+                                <span id="difference-value-spell-damage" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-spell-damage">0</span>
+
+                            <label id="style-damage" for="style-damage">Style Dmg</label>
+                            <div class="progress-container">
+                                <progress id="progress-style-damage" value="0" max="1"></progress>
+                                <span id="current-value-style-damage" class="progress-value">0</span>
+                                <span id="difference-value-style-damage" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-style-damage">0</span>
+
+                            <label id="melee-damage" for="melee-damage">Melee Dmg</label>
+                            <div class="progress-container">
+                                <progress id="progress-melee-damage" value="0" max="1"></progress>
+                                <span id="current-value-melee-damage" class="progress-value">0</span>
+                                <span id="difference-value-melee-damage" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-melee-damage">0</span>
+
+                            <label id="melee-combat-speed" for="melee-combat-speed">Melee Speed</label>
+                            <div class="progress-container">
+                                <progress id="progress-melee-combat-speed" value="0" max="1"></progress>
+                                <span id="current-value-melee-combat-speed" class="progress-value">0</span>
+                                <span id="difference-value-melee-combat-speed" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-melee-combat-speed">0</span>
+
+                            <label id="resist-pierce" for="resist-pierce">Pierce</label>
+                            <div class="progress-container">
+                                <progress id="progress-resist-pierce" value="0" max="1"></progress>
+                                <span id="current-value-resist-pierce" class="progress-value">0</span>
+                                <span id="difference-value-resist-pierce" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-resist-pierce">0</span>
+
+                            <label id="fatigue" for="fatigue">Fatigue</label>
+                            <div class="progress-container">
+                                <progress id="progress-fatigue" value="0" max="1"></progress>
+                                <span id="current-value-fatigue" class="progress-value">0</span>
+                                <span id="difference-value-fatigue" class="difference-value">0</span>
+                            </div>
+                            <span id="max-value-fatigue">0</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="window-itemfinder">
+                    <div class="window-title">Item finder</div>
+                    <iframe id="item-frame"
+                            src="https://tools.camelotherald.com/item/search">
+                    </iframe>
+                </div>
+                <div class="window-stats">
+                    <div class="window-title" id="item-stats-title">Item Stats</div>
+                    <div class="stats-grid">
+                        <div class="stats-row">
+                            <span>Stats 1</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 2</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 3</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 4</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 5</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 6</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 7</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 8</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                                <option value=""></option>
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 9</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                        <div class="stats-row">
+                            <span>Stats 0</span>
+                            <select class="dropdown-main">
+                                <option value="stats">Stats</option>
+                                <option value="resist">Resist</option>
+                                <option value="cap">Cap</option>
+                                <option value="toa">TOA</option>
+                                <option value="skill">Skill</option>
+                            </select>
+                            <select class="dropdown-secondary">
+                            </select>
+                            <input type="number" placeholder="values" class="value-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="window-stuff">
+                    <div class="window-title">Stuff</div>
+                    <div class="equipment-container">
+                        <button class="slot" data-slot="helm" style="top: 1%; left: 79%;">Helm</button>
+                        <button class="slot" data-slot="hands" style="top: 16%; left: 79%;">Hands</button>
+                        <button class="slot" data-slot="torso" style="top: 1%; left: 1%;">Torso</button>
+                        <button class="slot" data-slot="arms" style="top: 16%; left: 1%;">Arms</button>
+                        <button class="slot-mini" data-slot="jewel" style="top: 33%; left: 1%;">Jewel</button>
+                        <button class="slot-mini" data-slot="l ring" style="top: 45%; left: 1%;">L Ring</button>
+                        <button class="slot-mini" data-slot="l wrist" style="top: 57%; left: 1%;">L Wrist</button>
+                        <button class="slot-mini" data-slot="belt" style="top: 33%; left: 83%;">Belt</button>
+                        <button class="slot-mini" data-slot="r ring" style="top: 45%; left: 83%; ">R Ring</button>
+                        <button class="slot-mini" data-slot="r wrist" style="top: 57%; left: 83%; ">R Wrist</button>
+                        <button class="slot-mini" data-slot="necklace" style="top: 1%; left: 22%; ">Neckalce</button>
+                        <button class="slot-mini" data-slot="myth" style="top: 1%; left: 42%; ">Myth</button>
+                        <button class="slot-mini" data-slot="cloak" style="top: 1%; left: 62%; ">Cloak</button>
+                        <button class="slot" data-slot="legs" style="top: 70%; left: 1%;">Legs</button>
+                        <button class="slot" data-slot="feet" style="top: 70%; left: 79%;">Feet</button>
+                        <button class="slot" data-slot="r hand" style="top: 85%; left: 9%;">R Hand</button>
+                        <button class="slot" data-slot="l hand" style="top: 85%; left: 30%; ">L Hand</button>
+                        <button class="slot" data-slot="2 hand" style="top: 85%; left: 51%; ">2 Hand</button>
+                        <button class="slot" data-slot="ranged" style="top: 85%; left: 72%;">Ranged</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="game" class="page-content">
+            <div class="window-game-log-ally">
+                <div class="window-title">Log Ally</div>
+            </div>
+            <div class="window-game-log-ennemy">
+                <div class="window-title">Log Ennemy</div>
+            </div>
+            <div class="window-game">
+                <div class="window-title">Game</div>
+                <div id="game-grid-ally">
+                    <div class="cell" id="ally-1" onclick="takeDamage('ally-1')">
+                        <progress class="hp-bar-ally" id="hp-ally-1" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="ally-2" onclick="takeDamage('ally-2')">
+                        <progress class="hp-bar-ally" id="hp-ally-2" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="ally-3" onclick="takeDamage('ally-3')">
+                        <progress class="hp-bar-ally" id="hp-ally-3" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="ally-4" onclick="takeDamage('ally-4')">
+                        <progress class="hp-bar-ally" id="hp-ally-4" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell center" id="center"></div> <!-- Case centrale vide -->
+                    <div class="cell" id="ally-5" onclick="takeDamage('ally-5')">
+                        <progress class="hp-bar-ally" id="hp-ally-5" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="ally-6" onclick="takeDamage('ally-6')">
+                        <progress class="hp-bar-ally" id="hp-ally-6" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="ally-7" onclick="takeDamage('ally-7')">
+                        <progress class="hp-bar-ally" id="hp-ally-7" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="ally-8" onclick="takeDamage('ally-8')">
+                        <progress class="hp-bar-ally" id="hp-ally-8" value="100" max="100"></progress>
+                    </div>
+                </div>
+                <div id="game-grid-enemy">
+                    <div class="cell" id="enemy-1" onclick="takeDamage('enemy-1')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-1" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="enemy-2" onclick="takeDamage('enemy-2')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-2" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="enemy-3" onclick="takeDamage('enemy-3')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-3" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="enemy-4" onclick="takeDamage('enemy-4')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-4" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell center" id="center"></div> <!-- Case centrale vide -->
+                    <div class="cell" id="enemy-5" onclick="takeDamage('enemy-5')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-5" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="enemy-6" onclick="takeDamage('enemy-6')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-6" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="enemy-7" onclick="takeDamage('enemy-7')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-7" value="100" max="100"></progress>
+                    </div>
+                    <div class="cell" id="enemy-8" onclick="takeDamage('enemy-8')">
+                        <progress class="hp-bar-ennemy" id="hp-enemy-8" value="100" max="100"></progress>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar">
+        <button class="menu-btn" data-page="home">
+            <img src="img/home.png" alt="Home" />
+        </button>
+        <button class="menu-btn" data-page="tool">
+            <img src="img/tool.png" alt="Tool" />
+        </button>
+        <button class="menu-btn" data-page="game">
+            <img src="img/icon-game.png" alt="Game" />
+        </button>
+        <div class="bottom-btn">
+            <button class="menu-btn" data-page="discord">
+                <img src="img/discord.png" alt="Discord" />
+            </button>
+        </div>
+    </div>
+    <script src="js/game-test.js"></script>
+    <script src="js/script-test.js"></script>
+    <script src="js/orb-animation.js"></script>
+    <script src="/_framework/aspnetcore-browser-refresh.js"></script>
+</body>
+</html>

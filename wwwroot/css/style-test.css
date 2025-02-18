@@ -1,0 +1,561 @@
+﻿body, html {
+    padding: 5px;
+    font-family: 'Raleway', Arial, sans-serif;
+    background: linear-gradient(120deg, #2b2e33, #1e2125); /* Dégradé sombre */
+    color: #d3d7db;
+    display: flex;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+/* ------------------------------ All windows titles ------------------------------ */
+.window-title {
+    position: absolute; /* Positionne le titre par rapport à la fenêtre */
+    top: 0;
+    left: 0;
+    width: 100%; /* Prend toute la largeur de la fenêtre */
+    background-color: #2b2e33; /* Arrière-plan gris foncé */
+    color: #d3d7db; /* Texte en blanc */
+    text-align: center; /* Centrer le texte */
+    padding: 2px 0; /* Espacement vertical */
+    font-weight: bold; /* Texte en gras */
+    font-size: 16px; /* Taille du texte */
+    border-bottom: 1px solid #5a5e67; /* Ligne décorative en bas du titre */
+}
+/* ------------------------------ Content sidebar ------------------------------ */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100vh;
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+/* Cache toutes les pages par défaut */
+.page-content {
+    display: none; /* Les pages sont cachées par défaut */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Affiche la page active avec une transition */
+.active {
+    display: block;
+    opacity: 1;
+}
+
+.menu-btn {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    cursor: pointer;
+    display: flex; /* Assure que l'image est centrée */
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+    .menu-btn img {
+        width: 25px; /* Taille de l'image (ajuste selon ton besoin) */
+        height: 25px; /* Taille de l'image (ajuste selon ton besoin) */
+    }
+
+    .menu-btn:focus {
+        outline: none;
+    }
+
+.bottom-btn {
+    display: flex;
+    justify-content: center; /* Centre le bouton horizontalement */
+    align-items: center; /* Assure que le bouton est bien aligné */
+    margin-top: auto; /* Pousse le bouton en bas */
+}
+/* ------------------------------ Content in home ------------------------------ */
+#home {
+    position: absolute; /* Permet de positionner par rapport à la fenêtre */
+    top: 50%; /* Positionne le centre verticalement */
+    left: 50%; /* Positionne le centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste pour centrer parfaitement */
+    text-align: center; /* Centre le texte à l'intérieur */
+    background: #424549; /* Fond de la carte */
+    padding: 20px;
+    box-shadow: 0px 8px 5px rgba(0, 0, 0, 0.2); /* Petit effet d'ombre */
+    border-radius: 10px; /* Arrondi des bords */
+    max-width: 520px; /* Largeur max */
+    width: 100%; /* Adaptation aux petits écrans */
+    z-index: 10; /* Priorité pour être au-dessus d'autres contenus */
+}
+/* ------------------------------ windows ------------------------------ */
+.window-character {
+    position: absolute;
+    right: 1440px;
+    width: 400px; /* Largeur fixe */
+    height: 130px; /* Hauteur fixe */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: column; /* Aligne le titre et le contenu verticalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 29px;
+    overflow: hidden; /* Évite les débordements */
+}
+.window-summary-stats {
+    position: absolute;
+    right: 1030px;
+    width: 400px; /* Largeur fixe */
+    height: 265px; /* Hauteur fixe */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: column; /* Aligne le titre et le contenu verticalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 29px;
+    overflow: hidden; /* Évite les débordements */
+}
+.window-summary-resists {
+    position: absolute;
+    right: 1030px;
+    top: 315px; /* Place cette fenêtre juste en dessous de .left-top */
+    width: 400px; /* Largeur fixe */
+    height: 220px; /* Hauteur fixe */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: column; /* Aligne le titre et le contenu verticalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 29px;
+    overflow: hidden; /* Évite les débordements */
+}
+.window-summary-toabonuses {
+    position: absolute;
+    right: 1030px;
+    top: 570px; /* Place cette fenêtre juste en dessous de .left-top */
+    width: 400px; /* Largeur fixe */
+    height: 315px; /* Hauteur fixe */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: column; /* Aligne le titre et le contenu verticalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 29px;
+    overflow: hidden; /* Évite les débordements */
+}
+.window-itemfinder {
+    position: absolute;
+    right: 520px;
+    top: 345px;
+    width: 500px; /* Largeur fixe */
+    height: 540px; /* Hauteur pleine */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 29px;
+    overflow: hidden;
+}
+#item-frame {
+    width: 500px; /* Largeur fixe */
+    height: 540px; /* Hauteur pleine */
+    border: none; /* Supprime la bordure par défaut */
+    border-radius: 5px; /* Ajoute un arrondi aux coins */
+    overflow: hidden; /* Cache les parties dépassantes */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* (Optionnel) Ajoute une ombre */
+}
+.window-stats {
+    position: absolute;
+    right: 520px;
+    width: 500px; /* Largeur fixe */
+    height: 310px; /* Hauteur pleine */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 15px;
+    overflow: hidden;
+}
+.window-stuff {
+    position: absolute;
+    right: 10px;
+    width: 500px; /* Largeur fixe */
+    height: 700px; /* Hauteur pleine */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 25px;
+    overflow: hidden;
+}
+.window-game {
+    position: absolute;
+    right: 310px;
+    width: 1230px; /* Largeur fixe */
+    height: 500px; /* Hauteur fixe */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: row; /* Aligne le titre et le contenu verticalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 25px;
+    overflow: hidden; /* Évite les débordements */
+    justify-content: center;
+}
+.window-game-log-ally {
+    position: absolute;
+    right: 1550px;
+    width: 290px; /* Largeur fixe */
+    height: 350px; /* Hauteur fixe */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: row; /* Aligne le titre et le contenu verticalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 25px;
+    overflow: hidden; /* Évite les débordements */
+    justify-content: center;
+}
+.window-game-log-ennemy {
+    position: absolute;
+    right: 10px;
+    width: 290px; /* Largeur fixe */
+    height: 350px; /* Hauteur fixe */
+    background-color: #424549;
+    color: white;
+    display: flex;
+    flex-direction: row; /* Aligne le titre et le contenu verticalement */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    padding-top: 25px;
+    overflow: hidden; /* Évite les débordements */
+    justify-content: center;
+}
+/* ------------------------------ content window game ------------------------------ */
+
+/* Conteneurs spécifiques aux alliés et ennemis */
+#game-grid-ally, #game-grid-enemy {
+    display: grid;
+    grid-template-columns: repeat(3, 100px); /* 3 colonnes de 100px */
+    grid-template-rows: repeat(3, 100px); /* 3 rangées de 100px */
+    gap: 7px; /* Espacement entre les cases */
+    margin: 20px;
+}
+
+/* Cellules de la grille */
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ddd;
+    border: 2px solid #bbb;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Case centrale vide */
+.center {
+    background-color: transparent;
+}
+
+.hp-bar-ally {
+    width: 100px;
+    height: 100px;
+    background-color: darkgreen;
+    border-radius: 5px;
+    position: relative;
+}
+
+.hp-bar-ennemy {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    border-radius: 5px;
+    position: relative;
+}
+
+/* Si la case est morte, la barre devient rouge */
+.hp-bar.dead .hp-fill {
+    background-color: red;
+}
+/* ------------------------------ content window stats ------------------------------ */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 2fr 2.5fr 2.5fr 50px;
+    gap: 3px;
+}
+
+.stats-row {
+    display: contents; /* Les lignes utilisent le même gabarit */
+}
+
+    .stats-row span {
+        align-self: center;
+    }
+
+.dropdown-main, .dropdown-secondary, .value-input {
+    padding: 4px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+}
+
+.value-input {
+    text-align: center;
+}
+/* ------------------------------ content window stuff ------------------------------ */
+.equipment-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Boutons périphériques */
+.slot {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: #7289da;
+    border: 2px solid white;
+    border-radius: 100%;
+    color: white;
+    text-align: center;
+    line-height: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 2s ease;
+}
+
+/* Boutons périphériques petit */
+.slot-mini {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: #7289da;
+    border: 2px solid white;
+    border-radius: 100%;
+    color: white;
+    text-align: center;
+    line-height: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 2s ease;
+}
+    /* Effet au survol */
+    .slot:hover, .slot-mini:hover {
+        background-color: #99aab5;
+    }
+/* ------------------------------ content window character ------------------------------ */
+#character-form {
+    display: flex;
+    justify-content: normal; /* Sépare la colonne gauche et droite */
+    gap: 5px; /* Espacement horizontal entre les colonnes */
+}
+
+    #character-form .form-left,
+    #character-form .form-right {
+        display: flex;
+        flex-direction: column; /* Empile les éléments verticalement */
+        gap: 5px; /* Espacement vertical */
+    }
+
+    #character-form div {
+        display: flex;
+        align-items: center; /* Aligne les éléments sur une même ligne */
+        gap: 10px; /* Espacement entre le label et le champ */
+    }
+
+    #character-form label {
+        font-weight: bold;
+        width: 60px; /* Largeur uniforme pour tous les labels */
+        text-align: right; /* Aligne le texte des labels à droite */
+    }
+
+    #character-form select,
+    #character-form input {
+        padding: 4px; /* Réduction du padding */
+        font-size: 14px; /* Taille du texte */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        width: 130px; /* Largeur fixe pour les champs */
+        background-color: #f9f9f9;
+        transition: border-color 1s;
+    }
+
+        #character-form select:focus,
+        #character-form input:focus {
+            border-color: #7289da; /* Bordure bleue au focus */
+            outline: none;
+        }
+
+    #character-form .icon img {
+        width: 20px; /* Taille des icônes */
+        height: auto;
+        margin-left: 10px;
+    }
+
+    #character-form #name {
+        width: 160px; /* Largeur fixe pour ces champs */
+    }
+
+    /* Spécifique à Level et Rank */
+    #character-form #level,
+    #character-form #rank {
+        flex: none; /* Empêche la redimension automatique */
+        max-width: 45px; /* Largeur maximale fixée */
+        width: 45px; /* Largeur fixe pour ces champs */
+    }
+.hidden {
+    display: none;
+}
+/* ------------------------------ content window summary ------------------------------ */
+.summary-row {
+    display: grid;
+    grid-template-columns: 2.5fr 7.5fr 0.8fr; /* 3 colonnes : texte, barre, valeur */
+    align-items: center; /* Centrer verticalement les éléments */
+    gap: 5px;
+}
+
+#progress-strength, #progress-constitution, #progress-dexterity, #progress-quickness, #progress-intelligence, #progress-piety, #progress-charisma, #progress-empathy, #progress-power, #progress-hp, #progress-af,
+#progress-body, #progress-cold, #progress-heat, #progress-energy, #progress-matter, #progress-spirit, #progress-crush, #progress-slash, #progress-thrust,
+#progress-power-pool, #progress-debuff-effectiveness, #progress-buff-effectiveness, #progress-healing-effectiveness, #progress-spell-duration, #progress-casting-speed, #progress-spell-range, #progress-spell-damage, #progress-style-damage, #progress-melee-damage, #progress-melee-combat-speed, #progress-resist-pierce, #progress-fatigue {
+    width: 100%; /* La barre occupe tout l'espace attribué */
+    height: 16px; /* Hauteur de la barre */
+    border-radius: 1px;
+}
+
+#str, #con, #dex, #qui, #int, #pie, #cha, #emp, #pow, #hp, #af, #body, #cold, #heat, #energy, #matter, #spirit, #crush, #slash, #thrust,
+#power-pool, #debuff-effectiveness, #buff-effectiveness, #healing-effectiveness, #spell-duration, #casting-speed, #spell-range, #spell-damage, #style-damage, #melee-damage, #melee-combat-speed, #resist-pierce, #fatigue {
+    font-size: 13px; /* Taille de police ajustée pour un affichage clair */
+    text-align: center;
+}
+
+#max-value {
+    font-size: 13px;
+    text-align: center;
+}
+
+.progress-container {
+    position: relative;
+    display: inline-block;
+}
+
+.progress-value {
+    position: absolute;
+    left: 50%;
+    pointer-events: none; /* Pour éviter que le texte ne bloque les interactions avec la barre de progression */
+    margin: 0px;
+}
+
+.difference-value {
+    position: absolute;
+    left: 60%;
+    pointer-events: none; /* Pour éviter que le texte ne bloque les interactions avec la barre de progression */
+    margin: 0px;
+}
+/* ------------------------------ dropdown menu ------------------------------ */
+select {
+    appearance: none; /* Pour les navigateurs modernes */
+    -moz-appearance: none; /* Pour Firefox */
+    -webkit-appearance: none; /* Pour Chrome et Safari */
+    background-color: #f9f9f9; /* Optionnel, ajuster la couleur */
+    padding: 4px;
+    font-size: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 120px;
+}
+
+    /* Supprime la flèche, mais laisse un espace si un background est ajouté */
+    select::-ms-expand {
+        display: none; /* Pour Internet Explorer */
+    }
+
+/* Optionnel : Ajouter une icône ou un effet personnalisé */
+.select-container {
+    position: relative;
+    width: 120px;
+}
+
+    .select-container select {
+        width: 100%;
+        padding-right: 5px; /* Laisser de l'espace si vous ajoutez une icône */
+    }
+
+    .select-container::after {
+        content: ' '; /* Ajouter une icône ici avec content: '▼'; */
+        position: absolute;
+        right: 5px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+/* ------------------------------ scrolling ------------------------------ */
+/* Container avec la gestion de la barre de défilement */
+.container {
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Permet le défilement interne si nécessaire */
+    padding-right: 17px; /* Espacement pour la barre de défilement */
+}
+
+    /* Personnalisation de la barre de défilement verticale */
+    ::-webkit-scrollbar {
+        width: 10px; /* Largeur de la barre de défilement verticale */
+        background-color: rgba(0, 0, 0, 0.3); /* Transparence 0.3 pour le fond de la barre */
+    }
+
+    /* Personnalisation de la piste (track) de la barre de défilement */
+    ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.3); /* Fond de la piste avec transparence */
+        border-radius: 10px; /* Bords arrondis pour la piste */
+    }
+
+    /* Personnalisation de l'indicateur (thumb) de la barre de défilement */
+    ::-webkit-scrollbar-thumb {
+        background-color: #888; /* Couleur grise pour l'indicateur */
+        border-radius: 10px; /* Bords arrondis pour l'indicateur */
+        border: 3px solid rgba(0, 0, 0, 0.3); /* Bord avec transparence pour l'indicateur */
+    }
+
+    ::-webkit-scrollbar-thumb:horizontal {
+        background-color: #888; /* Couleur grise pour la barre horizontale */
+        border-radius: 10px; /* Bords arrondis pour l'indicateur horizontal */
+        border: 3px solid rgba(0, 0, 0, 0.3); /* Bord avec transparence pour l'indicateur horizontal */
+    }
+/* ------------------------------ bubble ------------------------------ */
+.orb {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-image: url('/img/eden-mini.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    clip-path: circle(50%);
+    transform-origin: center;
+}
