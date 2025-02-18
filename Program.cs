@@ -7,6 +7,6 @@ var app = builder.Build();
 app.UseStaticFiles(); // fichiers de wwwroot
 
 app.UseRouting();
-app.MapFallbackToFile("index-test.html"); // index.html par défaut
+app.MapFallbackToFile("index.html"); // index.html par défaut
 
 app.Run();
