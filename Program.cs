@@ -4,9 +4,14 @@ builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-app.UseStaticFiles(); // fichiers de wwwroot
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+    app.UseHsts();
+}
 
+app.UseStaticFiles();
 app.UseRouting();
-app.MapFallbackToFile("index.html"); // index.html par défaut
+app.MapFallbackToFile("index.html");
 
 app.Run();
