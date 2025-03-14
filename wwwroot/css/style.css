@@ -39,7 +39,7 @@
 .page-content {
     display: none; /* Les pages sont cachées par défaut */
     opacity: 0;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 3s ease-in-out;
 }
 
 /* Affiche la page active avec une transition */
@@ -49,6 +49,7 @@
 }
 
 .menu-btn {
+    position: relative;
     padding: 10px;
     margin: 5px;
     border: none;
@@ -57,15 +58,13 @@
     justify-content: center;
     align-items: center;
     background-color: transparent;
+    overflow: hidden; /* Ensure the pseudo-element doesn't overflow the button */
+    z-index: 1; /* Ensure the button content is above the pseudo-element */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
     .menu-btn img {
         width: 25px; /* Taille de l'image (ajuste selon ton besoin) */
         height: 25px; /* Taille de l'image (ajuste selon ton besoin) */
-    }
-
-    .menu-btn:focus {
-        outline: none;
     }
 
 .bottom-btn {
@@ -151,9 +150,9 @@
 .window-itemfinder {
     position: absolute;
     right: 520px;
-    top: 345px;
+    top: 385px;
     width: 500px; /* Largeur fixe */
-    height: 540px; /* Hauteur pleine */
+    height: 500px; /* Hauteur pleine */
     background-color: #424549;
     color: white;
     display: flex;
@@ -176,7 +175,7 @@
     position: absolute;
     right: 520px;
     width: 500px; /* Largeur fixe */
-    height: 310px; /* Hauteur pleine */
+    height: 350px; /* Hauteur pleine */
     background-color: #424549;
     color: white;
     display: flex;
@@ -184,8 +183,21 @@
     justify-content: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    padding-top: 15px;
+    padding-top: 10px;
     overflow: hidden;
+}
+.window-title input[type="checkbox"] {
+    position: absolute;
+    right: 10px; /* Positionne à droite */
+    top: 50%;
+    transform: translateY(-50%); /* Centre verticalement */
+}
+
+.window-title .checkbox-label {
+    position: absolute;
+    right: 35px; /* Place le texte juste à gauche de la checkbox */
+    top: 30%;
+    font-size: 14px;
 }
 .window-stuff {
     position: absolute;
@@ -202,124 +214,26 @@
     padding-top: 25px;
     overflow: hidden;
 }
-.window-game {
-    position: absolute;
-    right: 310px;
-    width: 1230px; /* Largeur fixe */
-    height: 500px; /* Hauteur fixe */
-    background-color: #424549;
-    color: white;
-    display: flex;
-    flex-direction: row; /* Aligne le titre et le contenu verticalement */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding-top: 25px;
-    overflow: hidden; /* Évite les débordements */
-    justify-content: center;
-}
-.window-game-log-ally {
-    position: absolute;
-    right: 1550px;
-    width: 290px; /* Largeur fixe */
-    height: 350px; /* Hauteur fixe */
-    background-color: #424549;
-    color: white;
-    display: flex;
-    flex-direction: row; /* Aligne le titre et le contenu verticalement */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding-top: 25px;
-    overflow: hidden; /* Évite les débordements */
-    justify-content: center;
-}
-.window-game-log-ennemy {
-    position: absolute;
-    right: 10px;
-    width: 290px; /* Largeur fixe */
-    height: 350px; /* Hauteur fixe */
-    background-color: #424549;
-    color: white;
-    display: flex;
-    flex-direction: row; /* Aligne le titre et le contenu verticalement */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding-top: 25px;
-    overflow: hidden; /* Évite les débordements */
-    justify-content: center;
-}
-/* ------------------------------ content window game ------------------------------ */
 
-/* Conteneurs spécifiques aux alliés et ennemis */
-#game-grid-ally, #game-grid-enemy {
-    display: grid;
-    grid-template-columns: repeat(3, 100px); /* 3 colonnes de 100px */
-    grid-template-rows: repeat(3, 100px); /* 3 rangées de 100px */
-    gap: 7px; /* Espacement entre les cases */
-    margin: 20px;
-}
-
-/* Cellules de la grille */
-.cell {
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ddd;
-    border: 2px solid #bbb;
-    font-size: 14px;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Case centrale vide */
-.center {
-    background-color: transparent;
-}
-
-.hp-bar-ally {
-    width: 100px;
-    height: 100px;
-    background-color: darkgreen;
-    border-radius: 5px;
-    position: relative;
-}
-
-.hp-bar-ennemy {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    border-radius: 5px;
-    position: relative;
-}
-
-/* Si la case est morte, la barre devient rouge */
-.hp-bar.dead .hp-fill {
-    background-color: red;
-}
 /* ------------------------------ content window stats ------------------------------ */
 .stats-grid {
     display: grid;
-    grid-template-columns: 2fr 2.5fr 2.5fr 50px;
-    gap: 3px;
+    grid-template-columns: 2fr 2fr 2fr 40px;
+    gap: 4px;
 }
-
+/* Ensure the new grid layout does not interfere with existing styles */
 .stats-row {
-    display: contents; /* Les lignes utilisent le même gabarit */
+    display: contents;
 }
-
-    .stats-row span {
-        align-self: center;
-    }
-
+.stats-row span {
+    align-self: center;
+}
 .dropdown-main, .dropdown-secondary, .value-input {
     padding: 4px;
     font-size: 14px;
     border: 1px solid #ccc;
     border-radius: 2px;
 }
-
 .value-input {
     text-align: center;
 }
@@ -512,7 +426,6 @@ select {
         transform: translateY(-50%);
         pointer-events: none;
     }
-
 /* ------------------------------ scrolling ------------------------------ */
 /* Container avec la gestion de la barre de défilement */
 .container {

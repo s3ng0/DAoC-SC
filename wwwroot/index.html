@@ -355,7 +355,11 @@
                     <div class="window-title">Item finder</div>
                 </div>
                 <div class="window-stats">
-                    <div class="window-title" id="item-stats-title">Item Stats</div>
+                    <div class="window-title">
+                        <span id="item-stats-title">Item Stats</span>
+                        <span class="checkbox-label">Crafted</span>
+                        <input type="checkbox" id="stats-checkbox">
+                    </div>
                     <div class="stats-grid">
                         <div class="stats-row">
                             <span>Stats 1</span>
@@ -523,71 +527,6 @@
                 </div>
             </div>
         </div>
-        <div id="game" class="page-content">
-            <div class="window-game-log-ally">
-                <div class="window-title">Log Ally</div>
-            </div>
-            <div class="window-game-log-ennemy">
-                <div class="window-title">Log Ennemy</div>
-            </div>
-            <div class="window-game">
-                <div class="window-title">Game</div>
-                <div id="game-grid-ally">
-                    <div class="cell" id="ally-1" onclick="takeDamage('ally-1')">
-                        <progress class="hp-bar-ally" id="hp-ally-1" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="ally-2" onclick="takeDamage('ally-2')">
-                        <progress class="hp-bar-ally" id="hp-ally-2" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="ally-3" onclick="takeDamage('ally-3')">
-                        <progress class="hp-bar-ally" id="hp-ally-3" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="ally-4" onclick="takeDamage('ally-4')">
-                        <progress class="hp-bar-ally" id="hp-ally-4" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell center" id="center"></div> <!-- Case centrale vide -->
-                    <div class="cell" id="ally-5" onclick="takeDamage('ally-5')">
-                        <progress class="hp-bar-ally" id="hp-ally-5" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="ally-6" onclick="takeDamage('ally-6')">
-                        <progress class="hp-bar-ally" id="hp-ally-6" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="ally-7" onclick="takeDamage('ally-7')">
-                        <progress class="hp-bar-ally" id="hp-ally-7" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="ally-8" onclick="takeDamage('ally-8')">
-                        <progress class="hp-bar-ally" id="hp-ally-8" value="100" max="100"></progress>
-                    </div>
-                </div>
-                <div id="game-grid-enemy">
-                    <div class="cell" id="enemy-1" onclick="takeDamage('enemy-1')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-1" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="enemy-2" onclick="takeDamage('enemy-2')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-2" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="enemy-3" onclick="takeDamage('enemy-3')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-3" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="enemy-4" onclick="takeDamage('enemy-4')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-4" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell center" id="center"></div> <!-- Case centrale vide -->
-                    <div class="cell" id="enemy-5" onclick="takeDamage('enemy-5')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-5" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="enemy-6" onclick="takeDamage('enemy-6')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-6" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="enemy-7" onclick="takeDamage('enemy-7')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-7" value="100" max="100"></progress>
-                    </div>
-                    <div class="cell" id="enemy-8" onclick="takeDamage('enemy-8')">
-                        <progress class="hp-bar-ennemy" id="hp-enemy-8" value="100" max="100"></progress>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="sidebar">
         <button class="menu-btn" data-page="home">
@@ -596,16 +535,12 @@
         <button class="menu-btn" data-page="tool">
             <img src="img/tool.png" alt="Tool" />
         </button>
-        <button class="menu-btn" data-page="game">
-            <img src="img/icon-game.png" alt="Game" />
-        </button>
         <div class="bottom-btn">
             <button class="menu-btn" data-page="discord">
                 <img src="img/discord.png" alt="Discord" />
             </button>
         </div>
     </div>
-    <script src="js/game.js"></script>
     <script src="js/script.js"></script>
     <script src="js/orb-animation.js"></script>
     <script src="/_framework/aspnetcore-browser-refresh.js"></script>

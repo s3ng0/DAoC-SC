@@ -85,7 +85,20 @@
         "spirit": document.getElementById("max-value-spirit"),
         "crush": document.getElementById("max-value-crush"),
         "slash": document.getElementById("max-value-slash"),
-        "thrust": document.getElementById("max-value-thrust")
+        "thrust": document.getElementById("max-value-thrust"),
+        "power-pool": document.getElementById("max-value-power-pool"),
+        "debuff-effectiveness": document.getElementById("max-value-debuff-effectiveness"),
+        "buff-effectiveness": document.getElementById("max-value-buff-effectiveness"),
+        "healing-effectiveness": document.getElementById("max-value-healing-effectiveness"),
+        "spell-duration": document.getElementById("max-value-spell-duration"),
+        "casting-speed": document.getElementById("max-value-casting-speed"),
+        "spell-range": document.getElementById("max-value-spell-range"),
+        "spell-damage": document.getElementById("max-value-spell-damage"),
+        "style-damage": document.getElementById("max-value-style-damage"),
+        "melee-damage": document.getElementById("max-value-melee-damage"),
+        "melee-combat-speed": document.getElementById("max-value-melee-combat-speed"),
+        "resist-pierce": document.getElementById("max-value-resist-pierce"),
+        "fatigue": document.getElementById("max-value-fatigue")
     };
     const statMultipliers = {
         "strength": 1.5,
@@ -107,7 +120,20 @@
         "spirit": 0.52,
         "crush": 0.52,
         "slash": 0.52,
-        "thrust": 0.52
+        "thrust": 0.52,
+        "power-pool": 0.50,
+        "debuff-effectiveness": 0.50,
+        "buff-effectiveness": 0.50,
+        "healing-effectiveness": 0.50,
+        "spell-duration": 0.50,
+        "casting-speed": 0.20,
+        "spell-range": 0.20,
+        "spell-damage": 0.20,
+        "style-damage": 0.20,
+        "melee-damage": 0.20,
+        "melee-combat-speed": 0.20,
+        "resist-pierce": 0.20,
+        "fatigue": 0.50
     };
     const totalStats = {
         "strength": 0,
@@ -129,7 +155,20 @@
         "spirit": 0,
         "crush": 0,
         "slash": 0,
-        "thrust": 0
+        "thrust": 0,
+        "power-pool": 0,
+        "debuff-effectiveness": 0,
+        "buff-effectiveness": 0,
+        "healing-effectiveness": 0,
+        "spell-duration": 0,
+        "casting-speed": 0,
+        "spell-range": 0,
+        "spell-damage": 0,
+        "style-damage": 0,
+        "melee-damage": 0,
+        "melee-combat-speed": 0,
+        "resist-pierce": 0,
+        "fatigue": 0
     };
     /* ------------------------------ save equipment stats ------------------------------ */
     let selectedArmorPart = null;
@@ -155,6 +194,56 @@
         ranged: []
     };
 
+    const craftedState = {
+        helm: false,
+        hands: false,
+        torso: false,
+        arms: false,
+        jewel: false,
+        "l ring": false,
+        "l wrist": false,
+        belt: false,
+        "r ring": false,
+        "r wrist": false,
+        necklace: false,
+        myth: false,
+        cloak: false,
+        legs: false,
+        feet: false,
+        "r hand": false,
+        "l hand": false,
+        "2 hand": false,
+        ranged: false
+    };
+
+    // Function to reset stats
+    function resetStats() {
+        const statRows = document.querySelectorAll('.stats-row');
+        statRows.forEach(row => {
+            const dropdownMain = row.querySelector('.dropdown-main');
+            const dropdownSecondary = row.querySelector('.dropdown-secondary');
+            const input = row.querySelector('.value-input');
+
+            // Update totalStats before resetting
+            const previousSecondary = input.dataset.previousSecondary;
+            const previousValue = parseInt(input.dataset.previousValue, 10) || 0;
+            if (previousSecondary) {
+                updateTotalStats(previousSecondary, 0, previousValue);
+            }
+
+            dropdownMain.value = '';
+            dropdownSecondary.innerHTML = '';
+            input.value = '';
+            input.dataset.previousValue = 0;
+            input.dataset.previousSecondary = '';
+        });
+
+        // Clear the stats for the selected armor part
+        if (selectedArmorPart) {
+            armorStats[selectedArmorPart] = [];
+        }
+    }
+
     // Handle armor part selection
     const armorButtons = document.querySelectorAll('.slot, .slot-mini');
     armorButtons.forEach(button => {
@@ -162,14 +251,10 @@
             selectedArmorPart = this.getAttribute('data-slot');
             updateItemStatsTitle(selectedArmorPart);
             loadArmorStats(selectedArmorPart);
+            updateStatsVisibility(selectedArmorPart);
+            updateCraftedCheckbox(selectedArmorPart);
         });
     });
-
-    // Function to update the item stats title
-    function updateItemStatsTitle(armorPart) {
-        const itemStatsTitle = document.getElementById('item-stats-title');
-        itemStatsTitle.textContent = `Item Stats - ${armorPart.charAt(0).toUpperCase() + armorPart.slice(1)}`;
-    }
 
     // Function to load armor stats into input fields
     function loadArmorStats(armorPart) {
@@ -195,6 +280,57 @@
             }
         });
     }
+
+    // Function to update the visibility of stats based on the checkbox
+    function updateStatsVisibility(armorPart) {
+        const statsRows = document.querySelectorAll('.stats-row');
+
+        if (craftedState[armorPart]) {
+            // Show only the first 4 stats and disable the rest
+            statsRows.forEach((row, index) => {
+                if (index < 4) {
+                    row.style.display = 'contents';
+                    row.querySelectorAll('input, select').forEach(input => input.disabled = false);
+                } else {
+                    row.style.display = 'none';
+                    row.querySelectorAll('input, select').forEach(input => input.disabled = true);
+                }
+            });
+        } else {
+            // Show all stats and enable them
+            statsRows.forEach(row => {
+                row.style.display = 'contents';
+                row.querySelectorAll('input, select').forEach(input => input.disabled = false);
+            });
+        }
+    }
+
+    // Function to update the crafted checkbox based on the selected armor part
+    function updateCraftedCheckbox(armorPart) {
+        const checkbox = document.getElementById('stats-checkbox');
+        checkbox.checked = craftedState[armorPart];
+    }
+
+    // Add event listener to the crafted checkbox
+    const craftedCheckbox = document.getElementById('stats-checkbox');
+    craftedCheckbox.addEventListener('change', function () {
+        if (selectedArmorPart) {
+            craftedState[selectedArmorPart] = this.checked;
+            updateStatsVisibility(selectedArmorPart);
+            resetStats(); // Ajoutez cet appel
+        }
+    });
+
+    // Function to update the item stats title
+    function updateItemStatsTitle(armorPart) {
+        const itemStatsTitle = document.getElementById('item-stats-title');
+        itemStatsTitle.textContent = `Item Stats - ${armorPart.charAt(0).toUpperCase() + armorPart.slice(1)}`;
+    }
+
+    // Initial call to set the visibility based on the default selected armor part
+    updateStatsVisibility('torso');
+    updateCraftedCheckbox('torso');
+    updateItemStatsTitle('torso');
 
     // Function to update the total stats and progress bar
     function updateTotalStats(statType, value, previousValue = 0) {
@@ -378,7 +514,6 @@
 
     // Simulate click on torso button to select it by default
     document.querySelector('.slot[data-slot="torso"]').click();
-
     /* ------------------------------ Populate Race/Class ------------------------------ */
     function updateRaces() {
         const selectedRealm = realmSelect.value;
@@ -446,6 +581,33 @@
         }
     }
     levelSelect.addEventListener("change", updateStatsBarMax);
+    /* ------------------------------ Populate Level and Rank ------------------------------ */
+    const statsCheckbox = document.getElementById('stats-checkbox');
+    const statsRows = document.querySelectorAll('.stats-row');
+
+    statsCheckbox.addEventListener('change', function () {
+        if (this.checked) {
+            // Show only the first 4 stats and disable the rest
+            statsRows.forEach((row, index) => {
+                if (index < 4) {
+                    row.style.display = 'contents';
+                    row.querySelectorAll('input, select').forEach(input => input.disabled = false);
+                } else {
+                    row.style.display = 'none';
+                    row.querySelectorAll('input, select').forEach(input => input.disabled = true);
+                }
+            });
+        } else {
+            // Show all stats and enable them
+            statsRows.forEach(row => {
+                row.style.display = 'contents';
+                row.querySelectorAll('input, select').forEach(input => input.disabled = false);
+            });
+        }
+    });
+
+    // Trigger the change event on page load to set the initial state
+    statsCheckbox.dispatchEvent(new Event('change'));
     /* ------------------------------ Populate Level and Rank ------------------------------ */
     function populateRanks() {
         for (let i = 1; i <= 12; i++) {
